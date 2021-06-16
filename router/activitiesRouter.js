@@ -32,13 +32,13 @@ router.post('/insert', async function(req,res){
             avgPace: newActivities.avgPace,
             calories: newActivitiescalories,
             date: newActivities.date,
-        });
+            })
         console.log("saved activity !")
     })
     .catch((err)=>{
         res.status(500).json({
             error: err,
-            success: false,
+            status: 'Failure',
         });
     });
 })
