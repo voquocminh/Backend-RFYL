@@ -5,22 +5,22 @@ var uniqueValidator = require("mongoose-unique-validator")
 // Schema là lược đồ database
 let activities_schema = mongoose.Schema({
     userID:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId
     },
     distance:{
-        type:Number
+        type: Number
     },
     time:{
-        type:Number
+        type: Number
     },
     avgPace:{
-        type:Number
+        type: Number
     },
     calories:{
-        type:Number
+        type: Number
     },
     date:{
-        type:Date,
+        type: mongoose.Schema.Types.Date,
         default: Date.now
     },
 })
