@@ -1,8 +1,8 @@
 const express = require("express")
 const  router = express.Router()
-const {activities, Activities} =require("../models/activities")
+const { Activities } =require("../models/activities")
 
-//get activities
+//get all activities
 router.get('/',async function(req,res){
     var activities = await Activities.find();
     if(activities){
