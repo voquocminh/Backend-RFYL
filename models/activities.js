@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 var uniqueValidator = require("mongoose-unique-validator")
 
 
+
 // Schema là lược đồ database
 let activities_schema = mongoose.Schema({
     userID:{
