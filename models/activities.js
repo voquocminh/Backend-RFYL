@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 var uniqueValidator = require("mongoose-unique-validator")
 
+const moment = require("moment")
 
 
 // Schema là lược đồ database
@@ -21,10 +22,11 @@ let activities_schema = mongoose.Schema({
         type: Number
     },
     date:{
-        type: mongoose.Schema.Types.Date,
-        default: Date.now
-    },
+        type: String,
+        default: moment().format('llll')
+    }
 })
+
 
 // Xác thực Unique trường duy nhất)
 activities_schema.plugin(uniqueValidator)
