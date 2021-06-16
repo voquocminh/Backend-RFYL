@@ -20,7 +20,8 @@ let activities_schema = mongoose.Schema({
         type:Number
     },
     date:{
-        type:Date
+        type:Date,
+        default: Date.now
     },
 })
 
