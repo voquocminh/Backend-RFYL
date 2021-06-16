@@ -24,6 +24,9 @@ app.use("/api/users",userRouter);
 var foodRouter = require("./router/foodRouter")
 app.use("/api/food",foodRouter);
 
+var activivties = require("./router/activitiesRouter")
+app.use("api/activities",activivtiesRouter);
+
 const connectString=process.env.connectString;
 // kết nối database
 mongoose
