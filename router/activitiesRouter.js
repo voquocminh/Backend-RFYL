@@ -22,25 +22,26 @@ router.post('/insert', async function(req,res){
         calories: req.body.calories,
         date: req.body.date,
     });
+    
     activities
-    .save()
-    .then((newActivities)=>{
-        res.send({
-            userID: newActivities.userID,
-            distance: newActivities.distance,
-            time: newActivities.time,
-            avgPace: newActivities.avgPace,
-            calories: newActivitiescalories,
-            date: newActivities.date,
-            })
-        console.log("saved activity !")
-    })
-    .catch((err)=>{
-        res.status(500).json({
-            error: err,
-            status: 'Failure',
+        .save()
+        .then((newActivities)=>{
+            res.send({
+                userID: newActivities.userID,
+                distance: newActivities.distance,
+                time: newActivities.time,
+                avgPace: newActivities.avgPace,
+                calories: newActivitiescalories,
+                date: newActivities.date,
+                })
+            console.log("saved activity !")
+        })
+        .catch((err)=>{
+            res.status(500).json({
+                error: err,
+                status: 'Failure',
+            });
         });
-    });
 })
 
 module.exports = router;
