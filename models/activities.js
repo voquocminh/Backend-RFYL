@@ -4,7 +4,7 @@ var uniqueValidator = require("mongoose-unique-validator")
 let activities_schema = mongoose.Schema({
     userID:{
         type: mongoose.Schema.Types.ObjectId,
-        ref:'User',
+        ref: 'User'
         require: true,
         unique: true
     },
@@ -26,6 +26,6 @@ let activities_schema = mongoose.Schema({
 })
 
 // Xác thực Unique (username là trường duy nhất)
-food_schema.plugin(uniqueValidator)
+activities_schema.plugin(uniqueValidator)
 
 exports.Activities = mongoose.model("Activities", activities_schema);
