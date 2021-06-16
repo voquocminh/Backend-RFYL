@@ -34,11 +34,11 @@ router.post('/insert', async function(req,res){
             date: newActivities.date,
         });
         console.log("saved activity !")
-    });
+    })
     .catch((err)=>{
         res.status(500).json({
             error: err,
-            success: false
+            success: false,
         });
     });
 })
