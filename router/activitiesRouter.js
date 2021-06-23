@@ -129,7 +129,6 @@ router.get('/thisweek', async function(req,res){
     }
 })
 
-
 //post 1 activity
 router.post('/post', async function(req, res){
     let activities = Activities(
@@ -148,7 +147,7 @@ router.post('/post', async function(req, res){
         activities
             .save()
             .then((activities)=>{
-                res.send('đã thêm activities !')
+                res.send('đã thêm activities thành công!')
                 console.log("đã thêm activities !")
             })
             .catch((err)=>{

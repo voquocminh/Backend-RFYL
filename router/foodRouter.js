@@ -9,8 +9,6 @@ router.get('/',async function(req,res){
    } else {
       res.status(500).send("Bad server");
    }
-    
-    
 })
 
 router.post('/insert', async function(req,res){
