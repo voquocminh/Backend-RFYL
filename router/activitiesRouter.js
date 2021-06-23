@@ -2,6 +2,8 @@ const express = require("express")
 const  router = express.Router()
 const {Activities} = require("../models/activities")
 
+const moment = require("moment")
+
 
 //get all activities
 router.get('/get', async function(req, res){
@@ -70,7 +72,61 @@ router.get('/month=:month', async function(req, res){
         res.status(500).send("bad server")
     }
 })
-//get activities a this week
+//get activities a this week 
+router.get('/thisweek', async function(req,res){
+    var thu= moment().format('dddd') //wednesday
+    console.log(thu);
+
+    var day=0;
+    switch(thu){
+        case "Monday":
+            day= 6;
+            break;
+        case "Tuesday":
+            day= 5;
+            break;
+        case "Wednesday":
+            day= 4;
+            break;
+        case "Thursday":
+            day= 3;
+            break;
+        case "Friday":
+            day= 2;
+            break;
+        case "Saturday":
+            day= 1;
+            break;
+        case "Sunday":
+            day= 0;
+            break;
+        default: day=0;
+    }
+    console.log(day);
+
+    var d1=moment().subtract((6-day), 'days').format(); 
+    var d2=moment().add(day, 'days').format(); 
+    console.log(d1)
+    console.log(d2)
+
+    var d11= d1.split('T')
+    d1=d11[0]+"T00:00:00.000Z";
+    var d22= d2.split('T')
+    d2=d22[0]+"T23:59:59.000Z";
+
+    console.log(d1)
+    console.log(d2)
+
+    var activities = await Activities.find({date:{
+        $gte:d1, //yyyy-mm-dd
+        $lt:d2 //yyy-mm-dd
+    }})
+    if(activities){
+        res.send(activities)
+    }else{
+        res.status(500).send("bad server")
+    }
+})
 
 
 //post 1 activity
