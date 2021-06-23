@@ -22,8 +22,20 @@ let activities_schema = mongoose.Schema({
         type: Number
     },
     date:{
-        type: String,
-        default: moment().format('llll')
+        type: Date,
+        default: Date.now()
+    },
+    routes:{
+        type: Array
+    },
+    marketOnRoute:{
+        type: Array
+    },
+    level:{
+        type: String
+    },
+    centerCoordinate:{
+        type: Array
     }
 })
 

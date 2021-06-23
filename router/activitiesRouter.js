@@ -12,8 +12,9 @@ router.get('/get', async function(req, res){
         res.status(500).send("bad server !");
     }
 })
+
 //get activities by userID
-router.get('/get?userID=:userID', async function(req, res){
+router.get('/userID=:userID', async function(req, res){
     var id = req.params.userID.toString();
     try{
         var activities = await Activities.find({userID: id.toString()});
@@ -21,8 +22,19 @@ router.get('/get?userID=:userID', async function(req, res){
     }catch(err){
         res.send(err)
     }
+    console.log(res)
 });
 
+//get activity by _id
+router.get('/id=:id', async function(req, res){
+        var activities = await Activities.findById(req.params.id);
+    if (activities){
+        res.send(activities);
+    }else{
+        res.status(500).send("bad server !");
+    }
+    console.log(res)
+});
 
 //post 1 activity
 router.post('/post', async function(req, res){
@@ -34,6 +46,10 @@ router.post('/post', async function(req, res){
             avgPace: req.body.avgPace,
             calories: req.body.calories,
             date: req.body.date,
+            routes: req.body.routes,
+            marketOnRoute: req.body.marketOnRoute,
+            level: req.body.level,
+            centerCoordinate: req.body.centerCoordinate
         })
         activities
             .save()
@@ -44,6 +60,7 @@ router.post('/post', async function(req, res){
             .catch((err)=>{
                 res.send(err)
             })
+            console.log(req)
 })
 
 module.exports = router;
