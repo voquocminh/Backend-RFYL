@@ -17,7 +17,7 @@ router.get('/get', async function(req, res){
 router.get('/userID=:userID', async function(req, res){
     var id = req.params.userID.toString();
     try{
-        var activities = await Activities.find({userID: id.toString()});
+        var activities = await Activities.find({userID: id});
         res.send(activities);
     }catch(err){
         res.send(err)
