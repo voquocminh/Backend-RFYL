@@ -53,7 +53,25 @@ router.get('/date=:date', async function(req, res){
     }
 })
 
-//get activitis by 
+//get activitis by 1 month
+router.get('/month=:month', async function(req, res){
+    var m = req.params.month;
+    var x="-01T00:00:00.000Z";
+    var y="-31T23:59:59.000Z";
+    var m1= m.concat(x);
+    var m2= m.concat(y);
+    var activities = await Activities.find({date:{
+        $gte: m1,
+        $lt: m2
+    }})
+    if(activities){
+        res.send(activities)
+    }else{
+        res.status(500).send("bad server")
+    }
+})
+//get activities a this week
+
 
 //post 1 activity
 router.post('/post', async function(req, res){
