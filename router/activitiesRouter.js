@@ -35,6 +35,25 @@ router.get('/id=:id', async function(req, res){
     }
     console.log(res)
 });
+//get activities by 1 date
+router.get('/date=:date', async function(req, res){
+    var d = req.params.date;
+    var x="T00:00:00.000Z";
+    var y="T23:59:59.000Z";
+    var d1= d.concat(x);
+    var d2= d.concat(y);
+    var activities = await Activities.find({date:{
+        $gte: d1,
+        $lt: d2
+    }})
+    if(activities){
+        res.send(activities)
+    }else{
+        res.status(500).send("bad server")
+    }
+})
+
+//get activitis by 
 
 //post 1 activity
 router.post('/post', async function(req, res){

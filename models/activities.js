@@ -23,7 +23,7 @@ let activities_schema = mongoose.Schema({
     },
     date:{
         type: Date,
-        default: Date.now()
+        default:  Date.now //moment().format('LLLL')
     },
     routes:{
         type: Array
