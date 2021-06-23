@@ -142,7 +142,11 @@ router.post('/post', async function(req, res){
             routes: req.body.routes,
             marketOnRoute: req.body.marketOnRoute,
             level: req.body.level,
-            centerCoordinate: req.body.centerCoordinate
+            centerCoordinate: req.body.centerCoordinate,
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
+            latituDetal: req.body.latituDetal,
+            longituDetal: req.body.longituDetal
         })
         activities
             .save()

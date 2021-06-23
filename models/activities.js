@@ -35,8 +35,11 @@ let activities_schema = mongoose.Schema({
         type: String
     },
     centerCoordinate:{
-        type: Array
-    }
+        latitude:{type: String},
+        longitude:{type: String},
+        latituDetal:{type: String},
+        longituDetal:{type:String}
+    }     
 })
 
 
