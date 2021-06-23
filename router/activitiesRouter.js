@@ -27,7 +27,7 @@ router.get('/userID=:userID', async function(req, res){
     console.log(res)
 });
 
-//get activity by _id
+//get activity by id
 router.get('/id=:id', async function(req, res){
         var activities = await Activities.findById(req.params.id);
     if (activities){
@@ -37,7 +37,8 @@ router.get('/id=:id', async function(req, res){
     }
     console.log(res)
 });
-//get activities by 1 date
+
+//get activities by 1 date //yyyy-mm-dd
 router.get('/date=:date', async function(req, res){
     var d = req.params.date;
     var x="T00:00:00.000Z";
@@ -55,7 +56,7 @@ router.get('/date=:date', async function(req, res){
     }
 })
 
-//get activitis by 1 month
+//get activitis by 1 month //yyyy-mm
 router.get('/month=:month', async function(req, res){
     var m = req.params.month;
     var x="-01T00:00:00.000Z";
