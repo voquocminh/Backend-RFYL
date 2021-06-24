@@ -7,38 +7,48 @@ const moment = require("moment")
 // Schema là lược đồ database
 let activities_schema = mongoose.Schema({
     userID:{
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        require: true
     },
     distance:{
-        type: Number
+        type: Number,
+        default: 0
     },
     time:{
-        type: Number
+        type: Number,
+        default: 0
     },
     avgPace:{
-        type: Number
+        type: Number,
+        default: 0
     },
     calories:{
-        type: Number
+        type: Number,
+        default: 0
     },
     date:{
         type: Date,
         default:  Date.now //moment().format('LLLL')
     },
     routes:{
-        type: Array
+        type: Array,
+        default: []
     },
     marketOnRoute:{
-        type: Array
+        type: Array,
+        default: []
     },
     level:{
-        type: String
+        type: String,
+        default: []
     },
     centerCoordinate:{
         latitude:{type: String},
         longitude:{type: String},
         latituDetal:{type: String},
-        longituDetal:{type:String}
+        longituDetal:{type:String},
+        default:[]
     }     
 })
 

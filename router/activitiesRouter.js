@@ -1,8 +1,10 @@
 const express = require("express")
 const  router = express.Router()
 const {Activities} = require("../models/activities")
+const {User} = require("../models/user")
 
 const moment = require("moment")
+const { json } = require("express")
 
 
 //get all activities
@@ -15,17 +17,18 @@ router.get('/get', async function(req, res){
     }
 })
 
-//get activities by userID
-router.get('/userID=:userID', async function(req, res){
-    var id = req.params.userID.toString();
-    try{
-        var activities = await Activities.find({userID: id});
-        res.send(activities);
-    }catch(err){
-        res.send(err)
-    }
-    console.log(res)
-});
+
+//get all activities by userID
+// router.get('/userID=:userID', async function(req, res){
+//     var id = req.params.userID.toString();
+//     try{
+//         var activities = await Activities.find({userID: id});
+//         res.send(activities);
+//     }catch(err){
+//         res.send(err)
+//     }
+//     console.log(res)
+// });
 
 //get activity by id
 router.get('/id=:id', async function(req, res){
@@ -38,23 +41,54 @@ router.get('/id=:id', async function(req, res){
     console.log(res)
 });
 
-//get activities by 1 date //yyyy-mm-dd
-router.get('/date=:date', async function(req, res){
-    var d = req.params.date;
-    var x="T00:00:00.000Z";
-    var y="T23:59:59.000Z";
-    var d1= d.concat(x);
-    var d2= d.concat(y);
-    var activities = await Activities.find({date:{
-        $gte: d1,
-        $lt: d2
-    }})
-    if(activities){
-        res.send(activities)
-    }else{
-        res.status(500).send("bad server")
-    }
-})
+//get all activities by 1 date //yyyy-mm-dd
+    // router.get('/date=:date', async function(req, res){
+    //     var d = req.params.date;
+    //     var x="T00:00:00.000Z";
+    //     var y="T23:59:59.000Z";
+    //     var d1= d.concat(x);
+    //     var d2= d.concat(y);
+    //     var activities = await Activities.find(
+    //         {date:
+    //             {
+    //             $gte: d1,
+    //             $lt: d2
+    //             }}
+    //     )
+    //     if(activities){
+    //         res.send(activities)
+    //     }else{
+    //         res.status(500).send("bad server")
+    //     }
+    // })
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    router.get('/userID/:userID/date/:date', async function(req, res){
+        var userID= req.params.userID;
+        var d = req.params.date;
+        var x="T00:00:00.000Z";
+        var y="T23:59:59.000Z";
+        var d1= d.concat(x);
+        var d2= d.concat(y);
+        console.log(req.params)
+        console.log(d1,d2)
+        var activities = await Activities.find({
+            userID:userID,
+            date:{
+                $gte:d1,
+                $lt:d2
+            }
+        },function(err, activities)
+        {
+            if(activities){
+                res.send(activities)
+            }else{
+                res.status(500).send(err)
+            }
+        })        
+    })
+
+    
 
 //get activitis by 1 month //yyyy-mm
 router.get('/month=:month', async function(req, res){
@@ -159,5 +193,6 @@ router.post('/post', async function(req, res){
             })
             console.log(req)
 })
+
 
 module.exports = router;
