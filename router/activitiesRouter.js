@@ -62,7 +62,7 @@ router.get('/id=:id', async function(req, res){
         }
     })
 
-    ///////////////////////////////////////////////////////////////////get activitities by 1 user 1 date 
+    ///////////////////////////////////////////////////////////////////////////////////////get activitities by 1 user 1 date 
     router.get('/userID/:userID/date/:date', async function(req, res){
         var userID= req.params.userID;
         var d = req.params.date;
@@ -107,7 +107,7 @@ router.get('/month=:month', async function(req, res){
         res.status(500).send("bad server")
     }
 })
-////////////////////////////////////////////////////////////////////get activitis by 1 userID  1 month
+///////////////////////////////////////////////////////////////////////////////////////////get activitis by 1 userID  1 month
 router.get('/userID/:userID/month/:month', async function(req, res){
     var m = req.params.month;
     var userID=req.params.userID;
@@ -187,7 +187,7 @@ router.get('/thisweek', async function(req,res){
         res.status(500).send("bad server")
     }
 })
-////////////////////////////////////////////////////get activities this week by 1 userID 
+////////////////////////////////////////////////////////////////////////get activities this week by 1 userID 
 router.get('/userID/:userID/thisweek', async function(req,res){
     var userID=req.params.userID;
     var thu= moment().format('dddd') //thứ (Monday, Tuesday,...)
