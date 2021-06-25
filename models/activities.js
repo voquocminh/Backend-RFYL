@@ -44,10 +44,10 @@ let activities_schema = mongoose.Schema({
         default: []
     },
     centerCoordinate:{
-        latitude:{type: String, default: []},
-        longitude:{type: String, default: []},
-        latituDetal:{type: String, default: []},
-        longituDetal:{type:String, default: []},
+        latitude:{type: String, default: ""},
+        longitude:{type: String, default: ""},
+        latituDetal:{type: String, default: ""},
+        longituDetal:{type:String, default: ""},
     }     
 })
 
