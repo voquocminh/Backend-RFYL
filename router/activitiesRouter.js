@@ -99,7 +99,7 @@ router.get('/id/:id', async function(req, res){
 router.get('/month/:month', async function(req, res){
     var m = req.params.month;
     var x="-01T00:00:00.000Z";
-    var y="-31T23:59:59.000Z";
+    var y="-31T23:59:59.999Z";
     var m1= m.concat(x);
     var m2= m.concat(y);
     var activities = await Activities.find({date:{
@@ -113,12 +113,14 @@ router.get('/month/:month', async function(req, res){
     }
 })
 //get activitis by 1 userID  1 month
-// api example: 
+// api example: https://my-app-de.herokuapp.com/api/activities/userID/60c5ce6f6b3a9f002255b930/month/2021-06
+// 60c5ce6f6b3a9f002255b930 là 1 userID
+// 2021-06 là tháng muốn lọc ra ( định dạng yyyy-mm)
 router.get('/userID/:userID/month/:month', async function(req, res){
     var m = req.params.month;
     var userID=req.params.userID;
     var x="-01T00:00:00.000Z";
-    var y="-31T23:59:59.000Z";
+    var y="-31T23:59:59.999Z";
     var m1= m.concat(x);
     var m2= m.concat(y);
     var activities = await Activities.find({
@@ -178,7 +180,7 @@ router.get('/thisweek', async function(req,res){
     var d11= d1.split('T')
     d1=d11[0]+"T00:00:00.000Z";
     var d22= d2.split('T')
-    d2=d22[0]+"T23:59:59.000Z";
+    d2=d22[0]+"T23:59:59.999Z";
 
     console.log(d1)
     console.log(d2)
@@ -195,6 +197,8 @@ router.get('/thisweek', async function(req,res){
 })
 
 //get activities this week by 1 userID 
+// api example: https://my-app-de.herokuapp.com/api/activities/userID/60c5ce6f6b3a9f002255b930/thisweek
+// 60c5ce6f6b3a9f002255b930 là 1 userID
 router.get('/userID/:userID/thisweek', async function(req,res){
     var userID=req.params.userID;
     var thu= moment().format('dddd') //thứ (Monday, Tuesday,...)
