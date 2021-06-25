@@ -279,8 +279,7 @@ router.post('/post', async function(req, res){
         activities
             .save()
             .then((activities)=>{
-                res.send('đã thêm activities thành công!',date)
-
+                res.send("đã thêm activities !")
                 console.log("đã thêm activities !")
             })
             .catch((err)=>{
