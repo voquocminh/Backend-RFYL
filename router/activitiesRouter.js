@@ -31,6 +31,17 @@ router.get('/userID/:userID', async function(req, res){
     }
     console.log(res)
 });
+// get all activities by username
+router.get('/username/:username', async function(req, res){
+    var id = req.params.username.toString();
+    try{
+        var activities = await Activities.find({username: id});
+        res.send(activities);
+    }catch(err){
+        res.send(err)
+    }
+    console.log(res)
+});
 
 //get activity by id
 router.get('/id/:id', async function(req, res){
@@ -93,6 +104,32 @@ router.get('/id/:id', async function(req, res){
         })        
     })
 
+//get all acts 1 day by username
+router.get('/username/:username/date/:date', async function(req, res){
+    var username= req.params.username;
+    var d = req.params.date;
+    var x="T00:00:00.000Z";
+    var y="T23:59:59.999Z";
+    var d1= d.concat(x);
+    var d2= d.concat(y);
+    console.log(req.params)
+    console.log(d1,d2)
+    var activities = await Activities.find({
+        username:username,
+        date:{
+            $gte:d1,
+            $lt:d2
+        }
+    },function(err, activities)
+    {
+        if(activities){
+            res.send(activities)
+        }else{
+            res.status(500).send(err)
+        }
+    })        
+})
+
 //get activitis by 1 month //yyyy-mm
 router.get('/month/:month', async function(req, res){
     var m = req.params.month;
@@ -123,6 +160,29 @@ router.get('/userID/:userID/month/:month', async function(req, res){
     var m2= m.concat(y);
     var activities = await Activities.find({
         userID:userID,
+        date:{
+            $gte:m1,
+            $lt:m2
+        }
+    },function(err, activities)
+    {
+        if(activities){
+            res.send(activities)
+        }else{
+            res.status(500).send(err)
+        }
+    })        
+})
+//get all acts 1 month bu username
+router.get('/username/:username/month/:month', async function(req, res){
+    var m = req.params.month;
+    var username=req.params.username;
+    var x="-01T00:00:00.000Z";
+    var y="-31T23:59:59.999Z";
+    var m1= m.concat(x);
+    var m2= m.concat(y);
+    var activities = await Activities.find({
+        username:username,
         date:{
             $gte:m1,
             $lt:m2
@@ -241,6 +301,64 @@ router.get('/userID/:userID/thisweek', async function(req,res){
     // console.log(d2)
     var activities = await Activities.find({
         userID:userID,
+        date:{
+            $gte:d1,
+            $lt:d2
+        }
+    },function(err, activities)
+    {
+        if(activities){
+            res.send(activities)
+        }else{
+            res.status(500).send(err)
+        }
+    })        
+})
+// get this week by username
+router.get('/username/:username/thisweek', async function(req,res){
+    var username=req.params.username;
+    var thu= moment().format('dddd') //thứ (Monday, Tuesday,...)
+    console.log(thu);
+
+    var day=0;
+    switch(thu){
+        case "Monday":
+            day= 6;
+            break;
+        case "Tuesday":
+            day= 5;
+            break;
+        case "Wednesday":
+            day= 4;
+            break;
+        case "Thursday":
+            day= 3;
+            break;
+        case "Friday":
+            day= 2;
+            break;
+        case "Saturday":
+            day= 1;
+            break;
+        case "Sunday":
+            day= 0;
+            break;
+        default: day=0;
+    }
+    console.log(day);
+
+    var d1=moment().subtract((6-day), 'days').format(); 
+    var d2=moment().add(day, 'days').format(); 
+    // console.log(d1)
+    // console.log(d2)
+    var d11= d1.split('T')
+    d1=d11[0]+"T00:00:00.000Z";
+    var d22= d2.split('T')
+    d2=d22[0]+"T23:59:59.999Z";
+    // console.log(d1)
+    // console.log(d2)
+    var activities = await Activities.find({
+        username:username,
         date:{
             $gte:d1,
             $lt:d2
