@@ -17,7 +17,6 @@ router.get('/get', async function(req, res){
     }
 })
 
-
 //get all activities by userID
 // api example: https://my-app-de.herokuapp.com/api/activities/userID/60c5ce6f6b3a9f002255b930
 // 60c5ce6f6b3a9f002255b930 là 1 userID
@@ -106,7 +105,7 @@ router.get('/id/:id', async function(req, res){
 
 //get all acts 1 day by username
 router.get('/username/:username/date/:date', async function(req, res){
-    var username= req.params.username;
+    var u= req.params.username;
     var d = req.params.date;
     var x="T00:00:00.000Z";
     var y="T23:59:59.999Z";
@@ -115,7 +114,7 @@ router.get('/username/:username/date/:date', async function(req, res){
     console.log(req.params)
     console.log(d1,d2)
     var activities = await Activities.find({
-        username:username,
+        username:u,
         date:{
             $gte:d1,
             $lt:d2
@@ -127,7 +126,8 @@ router.get('/username/:username/date/:date', async function(req, res){
         }else{
             res.status(500).send(err)
         }
-    })        
+    })  
+    console.log("/username/:username/date/:date")      
 })
 
 //get activitis by 1 month //yyyy-mm
@@ -173,16 +173,16 @@ router.get('/userID/:userID/month/:month', async function(req, res){
         }
     })        
 })
-//get all acts 1 month bu username
+//get all acts 1 month by username
 router.get('/username/:username/month/:month', async function(req, res){
     var m = req.params.month;
-    var username=req.params.username;
+    var u=req.params.username;
     var x="-01T00:00:00.000Z";
     var y="-31T23:59:59.999Z";
     var m1= m.concat(x);
     var m2= m.concat(y);
     var activities = await Activities.find({
-        username:username,
+        username:u,
         date:{
             $gte:m1,
             $lt:m2
@@ -316,7 +316,7 @@ router.get('/userID/:userID/thisweek', async function(req,res){
 })
 // get this week by username
 router.get('/username/:username/thisweek', async function(req,res){
-    var username=req.params.username;
+    var u=req.params.username;
     var thu= moment().format('dddd') //thứ (Monday, Tuesday,...)
     console.log(thu);
 
@@ -358,7 +358,7 @@ router.get('/username/:username/thisweek', async function(req,res){
     // console.log(d1)
     // console.log(d2)
     var activities = await Activities.find({
-        username:username,
+        username:u,
         date:{
             $gte:d1,
             $lt:d2
