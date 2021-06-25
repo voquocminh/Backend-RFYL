@@ -19,7 +19,8 @@ router.get('/get', async function(req, res){
 
 
 //get all activities by userID
-router.get('/userID=:userID', async function(req, res){
+// api example: 
+router.get('/userID/:userID', async function(req, res){
     var id = req.params.userID.toString();
     try{
         var activities = await Activities.find({userID: id});
@@ -62,7 +63,10 @@ router.get('/id=:id', async function(req, res){
         }
     })
 
-    ///////////////////////////////////////////////////////////////////////////////////////get activitities by 1 user 1 date 
+//get activitities by 1 user 1 date 
+// api example: https://my-app-de.herokuapp.com/api/activities/userID/60c5ce6f6b3a9f002255b930/date/2021-06-23
+// 60c5ce6f6b3a9f002255b930 là 1 userID 
+// 2021-06-02 là ngày muốn lọc ra ( định dạng yyyy-mm-dd)
     router.get('/userID/:userID/date/:date', async function(req, res){
         var userID= req.params.userID;
         var d = req.params.date;
@@ -187,7 +191,8 @@ router.get('/thisweek', async function(req,res){
         res.status(500).send("bad server")
     }
 })
-////////////////////////////////////////////////////////////////////////get activities this week by 1 userID 
+
+//get activities this week by 1 userID 
 router.get('/userID/:userID/thisweek', async function(req,res){
     var userID=req.params.userID;
     var thu= moment().format('dddd') //thứ (Monday, Tuesday,...)
@@ -247,6 +252,8 @@ router.get('/userID/:userID/thisweek', async function(req,res){
 })
 
 //post 1 activity
+// api: https://my-app-de.herokuapp.com/api/activities/post
+// 
 router.post('/post', async function(req, res){
     let activities = Activities(
         {
