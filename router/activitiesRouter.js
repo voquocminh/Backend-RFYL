@@ -47,7 +47,7 @@ router.get('/id/:id', async function(req, res){
     router.get('/date/:date', async function(req, res){
         var d = req.params.date;
         var x="T00:00:00.000Z";
-        var y="T23:59:59.000Z";
+        var y="T23:59:59.999Z";
         var d1= d.concat(x);
         var d2= d.concat(y);
         var activities = await Activities.find(
@@ -72,7 +72,7 @@ router.get('/id/:id', async function(req, res){
         var userID= req.params.userID;
         var d = req.params.date;
         var x="T00:00:00.000Z";
-        var y="T23:59:59.000Z";
+        var y="T23:59:59.999Z";
         var d1= d.concat(x);
         var d2= d.concat(y);
         console.log(req.params)
@@ -238,7 +238,7 @@ router.get('/userID/:userID/thisweek', async function(req,res){
     var d11= d1.split('T')
     d1=d11[0]+"T00:00:00.000Z";
     var d22= d2.split('T')
-    d2=d22[0]+"T23:59:59.000Z";
+    d2=d22[0]+"T23:59:59.999Z";
     // console.log(d1)
     // console.log(d2)
     var activities = await Activities.find({
@@ -286,8 +286,9 @@ router.post('/post', async function(req, res){
             })
             .catch((err)=>{
                 res.send(err)
+                console.log(err)
             })
-            console.log(req)
+            //console.log(req)
 })
 
 
