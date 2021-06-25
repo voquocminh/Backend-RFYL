@@ -19,7 +19,8 @@ router.get('/get', async function(req, res){
 
 
 //get all activities by userID
-// api example: 
+// api example: https://my-app-de.herokuapp.com/api/activities/userID/60c5ce6f6b3a9f002255b930
+// 60c5ce6f6b3a9f002255b930 là 1 userID
 router.get('/userID/:userID', async function(req, res){
     var id = req.params.userID.toString();
     try{
@@ -32,7 +33,7 @@ router.get('/userID/:userID', async function(req, res){
 });
 
 //get activity by id
-router.get('/id=:id', async function(req, res){
+router.get('/id/:id', async function(req, res){
         var activities = await Activities.findById(req.params.id);
     if (activities){
         res.send(activities);
@@ -43,7 +44,7 @@ router.get('/id=:id', async function(req, res){
 });
 
 //get all activities by 1 date //yyyy-mm-dd
-    router.get('/date=:date', async function(req, res){
+    router.get('/date/:date', async function(req, res){
         var d = req.params.date;
         var x="T00:00:00.000Z";
         var y="T23:59:59.000Z";
@@ -95,7 +96,7 @@ router.get('/id=:id', async function(req, res){
     
 
 //get activitis by 1 month //yyyy-mm
-router.get('/month=:month', async function(req, res){
+router.get('/month/:month', async function(req, res){
     var m = req.params.month;
     var x="-01T00:00:00.000Z";
     var y="-31T23:59:59.000Z";
@@ -111,7 +112,8 @@ router.get('/month=:month', async function(req, res){
         res.status(500).send("bad server")
     }
 })
-///////////////////////////////////////////////////////////////////////////////////////////get activitis by 1 userID  1 month
+//get activitis by 1 userID  1 month
+// api example: 
 router.get('/userID/:userID/month/:month', async function(req, res){
     var m = req.params.month;
     var userID=req.params.userID;
