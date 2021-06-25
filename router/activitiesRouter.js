@@ -93,8 +93,6 @@ router.get('/id/:id', async function(req, res){
         })        
     })
 
-    
-
 //get activitis by 1 month //yyyy-mm
 router.get('/month/:month', async function(req, res){
     var m = req.params.month;
@@ -281,14 +279,15 @@ router.post('/post', async function(req, res){
         activities
             .save()
             .then((activities)=>{
-                res.send('đã thêm activities thành công!')
+                res.send('đã thêm activities thành công!',date)
+
                 console.log("đã thêm activities !")
             })
             .catch((err)=>{
                 res.send(err)
                 console.log(err)
             })
-            //console.log(req)
+            console.log(date)
 })
 
 
