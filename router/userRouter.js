@@ -48,11 +48,11 @@ router.post("/login", async function(req,res){
     res.header('auth-token', token).send(token);  
 })
 //get userID by username
-router.get('/get/:username', async function(req,res){
+router.get('/getID/:username', async function(req,res){
   try {
     var user= await User.findOne({username: req.params.username})
     if(user){
-      res.send(user)
+      res.send(user._id)
     }
   } catch (error) {
     console.log(error)
