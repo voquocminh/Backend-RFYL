@@ -5,6 +5,19 @@ const { User } = require("../models/user")
 const {userInfo} = require("../models/user")
 const jwt = require('jsonwebtoken')
 
+
+//get userID by username
+router.get('/getID/:username', async function(req,res){
+  try {
+    var user= await User.findOne({username: req.params.username})
+    if(user){
+      res.send(user._id)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 //upload file
 const cloudinary = require("cloudinary").v2;
 cloudinary.config({
@@ -46,17 +59,6 @@ router.post("/login", async function(req,res){
 
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 });
     res.header('auth-token', token).send(token);  
-})
-//get userID by username
-router.get('/getID/:username', async function(req,res){
-  try {
-    var user= await User.findOne({username: req.params.username})
-    if(user){
-      res.send(user._id)
-    }
-  } catch (error) {
-    console.log(error)
-  }
 })
 
 
