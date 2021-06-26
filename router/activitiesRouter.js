@@ -104,31 +104,31 @@ router.get('/id/:id', async function(req, res){
     })
 
 // //get all acts 1 day by username
-// router.get('/username/:username/date/:date', async function(req, res){
-//     var u= req.params.username;
-//     var d = req.params.date;
-//     var x="T00:00:00.000Z";
-//     var y="T23:59:59.999Z";
-//     var d1= d.concat(x);
-//     var d2= d.concat(y);
-//     console.log(req.params)
-//     console.log(d1,d2)
-//     var activities = await Activities.find({
-//         username:u,
-//         date:{
-//             $gte:d1,
-//             $lt:d2
-//         }
-//     },function(err, activities)
-//     {
-//         if(activities){
-//             res.send(activities)
-//         }else{
-//             res.status(500).send(err)
-//         }
-//     })  
-//     console.log("/username/:username/date/:date")      
-// })
+router.get('/username/:username/date/:date', async function(req, res){
+    var u= req.params.username;
+    var d = req.params.date;
+    var x="T00:00:00.000Z";
+    var y="T23:59:59.999Z";
+    var d1= d.concat(x);
+    var d2= d.concat(y);
+    console.log(req.params)
+    console.log(d1,d2)
+    var activities = await Activities.find({
+        username:u,
+        date:{
+            $gte:d1,
+            $lt:d2
+        }
+    },function(err, activities)
+    {
+        if(activities){
+            res.send(activities)
+        }else{
+            res.status(500).send(err)
+        }
+    })  
+    console.log("/username/:username/date/:date")      
+})
 
 //get activitis by 1 month //yyyy-mm
 router.get('/month/:month', async function(req, res){
