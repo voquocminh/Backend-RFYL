@@ -21,7 +21,7 @@ let activities_schema = mongoose.Schema({
     },
     date:{
         type: Date,
-        default:  Date.now()+25200000 // date.now ở múi giờ UTC 00:00 , cộng thêm 25200000 milisercond ra múi giờ UTC +07:00
+        default:  Date.now() + 25200000 // date.now ở múi giờ UTC 00:00 , cộng thêm 25200000 milisercond ra múi giờ UTC +07:00
     },
     record:{
         activity:{
@@ -59,8 +59,8 @@ let activities_schema = mongoose.Schema({
             default:[]
         },
         region:{
-            type:Array,
-            default:[]
+            type:Object,
+            default: null
         }
     }
 })
