@@ -256,24 +256,24 @@ router.post('/post', async function(req, res){
     let activities = Activities(
         {
             userID: req.body.userID,
-            distance: req.body.distance,
-            time: req.body.time,
-            avgPace: req.body.avgPace,
-            calories: req.body.calories,
-            date: req.body.date,
-            routes: req.body.routes,
-            marketOnRoute: req.body.marketOnRoute,
+            title: req.body.title,
+            discription: req.body.discription,
+            date:req.body.date,
+            record: req.body.record,
+            activity: req.body.record.activity,
             level: req.body.level,
-            centerCoordinate: req.body.centerCoordinate,
-            latitude: req.body.latitude,
-            longitude: req.body.longitude,
-            latituDetal: req.body.latituDetal,
-            longituDetal: req.body.longituDetal
+            calo: req.body.calo,
+            distance: req.body.distance,
+            totalTime: req.body.totalTime,
+            map: req.body.map,
+            routes: req.body.map.routes,
+            markerOnRoute: req.body.markerOnRoute,
+            region: req.body.region
         })
         activities
             .save()
             .then((activities)=>{
-                res.send("đã thêm activities !")
+                res.send("thêm thành công nhé !")
                 console.log("đã thêm activities !")
             })
             .catch((err)=>{

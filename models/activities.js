@@ -11,44 +11,58 @@ let activities_schema = mongoose.Schema({
         ref: 'User',
         require: true
     },
-    distance:{
-        type: Number,
-        default: 0
+    title:{
+        type: String,
+        default:""
     },
-    time:{
-        type: Number,
-        default: 0
-    },
-    avgPace:{
-        type: Number,
-        default: 0
-    },
-    calories:{
-        type: Number,
-        default: 0
+    discription:{
+        type :String,
+        default:""
     },
     date:{
         type: Date,
         default:  Date.now()+25200000 // date.now ở múi giờ UTC 00:00 , cộng thêm 25200000 milisercond ra múi giờ UTC +07:00
     },
-    routes:{
-        type: Array,
-        default: []
+    record:{
+        activity:{
+            type: String,
+            default:""
+        },
+        level:{
+            type: String,
+            default: ""
+        },
+        distance:{
+            type: Number,
+            default: 0
+        },
+        totalTime:{
+            type: Number,
+            default: 0
+        },
+        avgPace:{
+            type: Number,
+            default: 0
+        },
+        calo:{
+            type: Number,
+            default: 0
+        }
     },
-    marketOnRoute:{
-        type: Array,
-        default: []
-    },
-    level:{
-        type: String,
-        default: []
-    },
-    centerCoordinate:{
-        latitude:{type: String, default: ""},
-        longitude:{type: String, default: ""},
-        latituDetal:{type: String, default: ""},
-        longituDetal:{type:String, default: ""},
-    }     
+    map:{
+        routes:{
+            type:Array,
+            default:[]
+        },
+        markerOnRoute:{
+            type:Array,
+            default:[]
+        },
+        region:{
+            type:Array,
+            default:[]
+        }
+    }
 })
 
 
