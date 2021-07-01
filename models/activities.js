@@ -65,7 +65,6 @@ let activities_schema = mongoose.Schema({
     }
 })
 
-
 // Xác thực Unique trường duy nhất)
 activities_schema.plugin(uniqueValidator)
 
