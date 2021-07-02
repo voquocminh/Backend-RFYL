@@ -17,13 +17,7 @@ app.use(express.json()); //to support JSON encode
 
 var cors = require('cors');
 app.use(cors());
-
-var userRouter = require("./router/userRouter")
-app.use("/api/users",userRouter);
-
-var foodRouter = require("./router/foodRouter")
-app.use("/api/food",foodRouter);
-
+//activities
 var activitiesRouter = require("./router/activitiesRouter")
 app.use("/api/activities",activitiesRouter);
 

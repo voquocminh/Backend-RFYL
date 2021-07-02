@@ -8,7 +8,6 @@ const moment = require("moment")
 let activities_schema = mongoose.Schema({
     userID:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
         require: true
     },
     title:{
