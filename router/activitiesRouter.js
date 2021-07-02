@@ -1,7 +1,6 @@
 const express = require("express")
 const  router = express.Router()
 const {Activities} = require("../models/activities")
-const {User} = require("../models/user")
 
 const moment = require("moment")
 const { json } = require("express")
@@ -23,7 +22,7 @@ router.get('/get', async function(req, res){
 router.get('/userID/:userID', async function(req, res){
     var id = req.params.userID.toString();
     try{
-        var activities = await Activities.find({userID: id}).sort({'date':-1})
+        var activities = await Activities.find({userID: id}).sort({'date':-1}).limit(20)
         res.send(activities);
     }catch(err){
         res.send(err)
