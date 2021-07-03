@@ -22,7 +22,7 @@ router.get('/get', async function(req, res){
 router.get('/userID/:userID', async function(req, res){
     var id = req.params.userID.toString();
     try{
-        var activities = await Activities.find({userID: id}).sort({'date':-1}).limit(20)
+        var activities = await Activities.find({userID: id}).sort({'date':-1}).limit(7)
         res.send(activities);
     }catch(err){
         res.send(err)
