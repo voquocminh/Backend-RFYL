@@ -265,7 +265,7 @@ router.post('/post', async function(req, res){
             distance: req.body.distance,
             totalTime: req.body.totalTime,
             map: req.body.map,
-            routes: req.body.map.routes,
+            routes: req.body.routes,
             markerOnRoute: req.body.markerOnRoute,
             region: req.body.region
         })
