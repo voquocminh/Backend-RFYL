@@ -50,12 +50,12 @@ let activities_schema = mongoose.Schema({
     },
     map:{
         routes:{
-            type:Array,
-            default:[]
+            type:Object,
+            default: null
         },
         markerOnRoute:{
-            type:Array,
-            default:[]
+            type:Object,
+            default: null
         },
         region:{
             type:Object,
